@@ -22,11 +22,11 @@ class Solution:
                 res.append(matrix[y][x])
             #第三轮向左
             y = ycount-1-r
-            for x in range(xcount-1-r,r-1,-1):
+            for x in range(xcount-2-r,r-1,-1):
                 res.append(matrix[y][x])
             #第四轮向上
             x = r
-            for y in range(ycount-1-r,r,-1):
+            for y in range(ycount-2-r,r,-1):
                 res.append(matrix[y][x])
         return res
 # @lc code=end
