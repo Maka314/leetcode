@@ -8,6 +8,15 @@
 # @lc code=start
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        pi = 0
+        for si in range(len(s)):
+            pi = 0
+            flag = True
+            while flag:
+                if pi == len(p):
+                    return True
+                else:
+                    pass
 # @lc code=end
 
 
