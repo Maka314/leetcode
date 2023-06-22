@@ -16,11 +16,12 @@ class Solution:
             res = 10*res + x%10
             x = x//10
             if res >= 2147483648:
+                return 0
                 break
         if p==-1:
             return -res
         elif res == 2147483648:
-            return res-1
+            return 0
         else:
             return res
 # @lc code=end
