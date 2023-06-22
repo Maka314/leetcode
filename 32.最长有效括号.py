@@ -14,17 +14,8 @@ class Solution:
                 stack+=1
             else:
                 stack-=1
-            if stack>=0:
-                d[i]=1
-            else:
-                d[i],stack=0,0
-                if i>0:
-                    c_count = 0
-                    i-=1
-                    while d[i] and i>=0:
-                        c_count+=1
-                        i -= 1
-                    res = max(res,c_count)
+            if not stack:
+                pass
         return res
 # @lc code=end
 
