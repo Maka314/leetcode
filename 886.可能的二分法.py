@@ -12,24 +12,31 @@ class Solution:
             dis[p1-1].add(p2-1)
             dis[p2-1].add(p1-1)
         red,blue = set(),set()
+        print(len(dis))
         for i,j in enumerate(dis):
             if i not in red and i not in blue:
+                #两边都不排斥这个元素
                 red.add(i)
                 for hater in j:
-                    blue.add(hater)
+                    if hater in red:
+                        return False
+                    else:
+                        blue.add(hater)
             elif i in red and i not in blue:
-                blue.add(i)
                 for hater in j:
-                    red.add(hater)
+                    if hater in red:
+                        return False
+                    else:
+                        blue.add(hater)
             elif i not in red and i in blue:
-                red.add(i)
                 for hater in j:
-                    blue.add(hater)
+                    if hater in blue:
+                        return False
+                    else:
+                        red.add(hater)
             else:
                 return False
-        print(red,blue)
-        if red & blue:
-            return False            
         return True
+                
 # @lc code=end
 
