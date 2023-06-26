@@ -6,37 +6,18 @@
 
 # @lc code=start
 class Solution:
-    def possibleBipartition(self, n: int, dislikes: list[list[int]]) -> bool:
-        dis = [set() for i in range(n)]
-        for p1,p2 in dislikes:
-            dis[p1-1].add(p2-1)
-            dis[p2-1].add(p1-1)
-        red,blue = set(),set()
-        print(len(dis))
-        for i,j in enumerate(dis):
-            if i not in red and i not in blue:
-                #两边都不排斥这个元素
-                red.add(i)
-                for hater in j:
-                    if hater in red:
-                        return False
-                    else:
-                        blue.add(hater)
-            elif i in red and i not in blue:
-                for hater in j:
-                    if hater in red:
-                        return False
-                    else:
-                        blue.add(hater)
-            elif i not in red and i in blue:
-                for hater in j:
-                    if hater in blue:
-                        return False
-                    else:
-                        red.add(hater)
-            else:
-                return False
-        return True
+    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
+        g = [[] for _ in range(n)]
+        for x, y in dislikes:
+            g[x - 1].append(y - 1)
+            g[y - 1].append(x - 1)
+        color = [0] * n  # color[x] = 0 表示未访问节点 x
+
+        def dfs(x: int, c: int) -> bool:
+            color[x] = c
+            return all(color[y] != c and (color[y] or dfs(y, -c)) for y in g[x])
+        
+        return all(c or dfs(i, 1) for i, c in enumerate(color))
                 
 # @lc code=end
 
