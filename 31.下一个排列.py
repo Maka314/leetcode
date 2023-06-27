@@ -10,5 +10,20 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        max_i = len(nums)-1
+        flag = True
+        for i,j in enumerate(nums[::-1]):
+            if i<max_i and nums[max_i-i-1]<j:
+                nums[max_i-i] = nums[max_i-i-1]
+                nums[max_i-i-1] = j
+                flag = False
+                break
+        if flag:
+            l = len(nums)
+            for i,j in enumerate(nums):
+                nums[-(i+1)],nums[i] = j ,nums[-(i+1)]
+                if i+1>l/2:
+                    break
+                
 # @lc code=end
 
