@@ -7,10 +7,23 @@
 # @lc code=start
 class Solution:
     def commonChars(self, words: List[str]) -> List[str]:
-        res = list(words[0])
+        res = {}
+        for c in words[0]:
+            if c in res:
+                res[c][0] += 1
+            else:
+                res[c] = [1,0]
         for w in words[1:]:
-            tempWord = list(w)
-            res = res and tempWord
-        return res
+            for c in w:
+                if c in res:
+                    res[c][1] += 1
+            for i in res:
+                res[i][0] = min(res[i][0], res[i][1])
+                res[i][1] = 0
+        resL = []
+        for i in res:
+            for j in range(res[i][0]):
+                resL.append(i)
+        return resL
 # @lc code=end
 
