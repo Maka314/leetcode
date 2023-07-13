@@ -5,35 +5,25 @@
 #
 
 # @lc code=start
-class sortQueue:
-    def __init__(self) -> None:
-        self.queue = []
-    
-    def push(self, v):
-        while self.queue and v > self.queue[-1]:
-            self.queue.pop()
-        self.queue.append(v)
-    
-    def top(self):
-        if self.queue:
-            return self.queue[0]
-        else:
-            return None
-    
-    def pop(self):
-        return self.queue.pop(0)
-
-class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        queue = sortQueue()
-        for c in nums[:k]:
-            queue.push(c)
-        res = [queue.top()]
-        for i in range(k,len(nums)):
-            if nums[i-k] == queue.top():
-                queue.pop()
-            queue.push(nums[i])
-            res.append(queue.top())
-        return res
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        n=len(nums)
+        q=deque()
+        ans = []
+        for i,c in enumerate(nums):
+            while q and nums[q[-1]]<c:  # 队首
+                q.pop()
+            # 当前位置为i, 最后一个有效位 i-k+1
+            while q and q[0]<i-k+1:  # 队尾
+                mx=q.popleft()
+            q.append(i)
+            if i+1>=k:
+                ans.append(nums[q[0]])
+        return ans
 # @lc code=end
 
