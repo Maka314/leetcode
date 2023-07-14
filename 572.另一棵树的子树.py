@@ -26,8 +26,10 @@ class Solution:
         def find(root,subRoot):
             if juger(root, subRoot):
                 return True
+            elif not root or not subRoot:
+                return False
             else:
-                res = juger(root.right, subRoot) or juger(root.left, subRoot)
+                res = find(root.right, subRoot) or find(root.left, subRoot)
                 return res
         
         return find(root,subRoot)
