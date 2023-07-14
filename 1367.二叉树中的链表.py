@@ -18,20 +18,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        def judge(root, head):
-            if not head:
-                return True
-            elif not root:
-                return False
-            if head.val == root.val:
-                findRes = judge(root.left, head.next) or judge(root.right, head.next)
-                if findRes:
-                    return True
-                else:
-                    return judge(root.left, head) or judge(root.right, head)
-            else:
-                return judge(root.left, head) or judge(root.right, head)
+    def isSubPath(self, head: ListNode, root: TreeNode) -> bool:
+        if not root: return False
+        return self.helper(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right) 
 
-        return judge(root, head)
+    def helper(self, head, root):
+        if not head:
+            return True
+        if root and root.val != head.val or not root:
+            return False
+        return self.helper(head.next, root.left) or self.helper(head.next, root.right)
 # @lc code=end
