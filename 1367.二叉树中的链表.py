@@ -20,11 +20,9 @@
 class Solution:
     def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
         def judge(root, head):
-            if not root and not head:
+            if not head:
                 return True
-            elif root and not head:
-                return True
-            elif not root or not head:
+            elif not root:
                 return False
             if head.val == root.val:
                 findRes = judge(root.left, head.next) or judge(root.right, head.next)
