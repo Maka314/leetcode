@@ -39,12 +39,12 @@ class compressTree:
     def countTree(self, node: treeNode, layer=0):
         res = 0
         if not node.next:
-            return 1
+            return layer + 1
         else:
-            res = len(node.next)
-            for e in node.next:
-                res += self.countTree(node.next[e])
-        return res
+            res = 0
+            for i in node.next:
+                res += self.countTree(node.next[i],layer+1)
+            return res
 
 
 class Solution:
@@ -52,7 +52,5 @@ class Solution:
         res = compressTree()
         for w in words:
             res.addWord(w)
-        print(res.countTree(res.root))
-
-
+        return(res.countTree(res.root))
 # @lc code=end
