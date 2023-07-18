@@ -14,9 +14,17 @@
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         def pathFinder(root,path):
-            if not root:
-                return path
-            return min(pathFinder(root.left, path + 1), pathFinder(root.right, path + 1))
+            if not root.left and not root.right:
+                return path + 1
+            son = []
+            if root.left:
+                son.append(pathFinder(root.left,path + 1))
+            if root.right:
+                son.append(pathFinder(root.right,path + 1))
+            print()
+            return min(son)
+        if not root:
+            return 0
         return pathFinder(root,0)
 # @lc code=end
 
