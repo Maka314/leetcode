@@ -15,10 +15,15 @@ class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
+        stack = [root]
         res = []
-        res += self.postorderTraversal(root.left)
-        res += self.postorderTraversal(root.right)
-        res.append(root.val)
-        return res
+        while stack:
+            currentNode = stack.pop()
+            res.append(currentNode.val)
+            if currentNode.left:
+                stack.append(currentNode.left)
+            if currentNode.right:
+                stack.append(currentNode.right)
+        return res[::-1]
 # @lc code=end
 
