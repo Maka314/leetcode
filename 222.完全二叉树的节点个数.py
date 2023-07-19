@@ -13,17 +13,12 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-        res = 0
-        nodeList = [root]
-        while nodeList:
-            res += 1
-            currentNode = nodeList.pop(0)
-            if currentNode.left:
-                nodeList.append(currentNode.left)
-            if currentNode.right:
-                nodeList.append(currentNode.right)
-        return res
+        def count(root):
+            if not root:
+                return 0
+            else:
+                return count(root.left)+count(root.right)+1
+
+        return count(root)
 # @lc code=end
 
