@@ -13,26 +13,24 @@
 #         self.right = right
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
-        def minScarch(root):
+        elementDict = {}
+        def elementSearch(root):
             if not root:
-                return []
-            res = []
-            res += minScarch(root.left)
-            res.append(root.val)
-            res += minScarch(root.right)
-            return res
-        queue = minScarch(root)
-        numSet = set()
-        biggestCount = 0
-        res = []
-        for i in queue:
-            if i not in numSet:
-                numSet.add(i)
-                if queue.count(i) > biggestCount:
-                    res = [i]
-                    biggestCount = queue.count(i)
-                elif queue.count(i) == biggestCount:
-                    res.append(i)
+                return 0
+            if root.val in elementDict:
+                elementDict[root.val] += 1
+            else:
+                elementDict[root.val] = 1
+            elementSearch(root.left)
+            elementSearch(root.right)
+        elementSearch(root)
+        m = 0
+        for i in elementDict:
+            if elementDict[i] > m:
+                res = [i]
+                m = elementDict[i]
+            elif elementDict[i] == m:
+                res += [i]
         return res
 # @lc code=end
 
