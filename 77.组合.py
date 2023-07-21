@@ -20,6 +20,7 @@ class Solution:
             path.append(i)  # 处理节点
             self.backtracking(n, k, i + 1, path, result)
             path.pop()  # 回溯，撤销处理的节点
+        print(path)
 
 
 # @lc code=end
