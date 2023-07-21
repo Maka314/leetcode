@@ -11,6 +11,7 @@ class Solution:
         result = []  # 存放结果集
         self.backtracking(n, k, 1, [], result)
         return result
+
     def backtracking(self, n, k, startIndex, path, result):
         if len(path) == k:
             result.append(path[:])
