@@ -7,6 +7,16 @@
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        pass
+        self.res = []
+        self.backTracking([], 0, nums)
+        return self.res
+    
+    def backTracking(self, path, startIndex, nums):
+        self.res.append(path[:])
+
+        for i in range(startIndex,len(nums)):
+            path.append(nums[i])
+            self.backTracking(path,i+1,nums)
+            path.pop()
 # @lc code=end
 
