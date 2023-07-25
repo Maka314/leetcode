@@ -7,20 +7,16 @@
 # @lc code=start
 class Solution:
     def halveArray(self, nums: List[int]) -> int:
-        res, target = 0, sum(nums)/2
-        s = 0
-        searchArea = len(nums) - 1
-        nums.sort()
-        while s < target:
-            biggetsI = searchArea
-            for i in range(searchArea,len(nums)):
-                if nums[i] > nums[biggetsI]:
-                    biggetsI = i
-            nums[biggetsI] = nums[biggetsI]/2
-            s += nums[biggetsI]
-            if biggetsI == searchArea:
-                searchArea -= 1
-            res += 1
-        return res
+        s = sum(nums) / 2
+        h = []
+        for v in nums:
+            heappush(h, -v)
+        ans = 0
+        while s > 0:
+            t = -heappop(h) / 2
+            s -= t
+            heappush(h, -t)
+            ans += 1
+        return ans
 # @lc code=end
 
