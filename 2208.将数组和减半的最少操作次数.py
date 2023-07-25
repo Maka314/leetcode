@@ -9,11 +9,18 @@ class Solution:
     def halveArray(self, nums: List[int]) -> int:
         res, target = 0, sum(nums)/2
         s = 0
+        searchArea = len(nums) - 1
+        nums.sort()
         while s < target:
-            nums.sort()
+            biggetsI = searchArea
+            for i in range(searchArea,len(nums)):
+                if nums[i] > nums[biggetsI]:
+                    biggetsI = i
+            nums[biggetsI] = nums[biggetsI]/2
+            s += nums[biggetsI]
+            if biggetsI == searchArea:
+                searchArea -= 1
             res += 1
-            s += nums[-1]/2
-            nums[-1] = nums[-1]/2
         return res
 # @lc code=end
 
