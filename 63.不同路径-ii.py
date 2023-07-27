@@ -26,7 +26,6 @@ class Solution:
                 
                 if obstacleGrid[y][x]==1:
                     routeMap[y][x]=0
-        print(routeMap)
         return routeMap[ySize-1][xSize-1]
 # @lc code=end
 
