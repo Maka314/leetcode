@@ -8,16 +8,15 @@
 class Solution:
     def __init__(self) -> None:
         self.maxResult = {
-            0:0,
             1:1,
             2:1
         }
     def integerBreak(self, n: int) -> int:
         if n in self.maxResult:
             return self.maxResult[n]
-        res = []
+        res = [] #浪费
         for i in range(1,n):
-            res.append(max(i * self.integerBreak(n - i), i * (n-i)))
+            res.append(i*max(self.integerBreak(n - i), n-i))
         res = max(res)
         self.maxResult[n] = res
         return res
