@@ -12,8 +12,9 @@ class Solution:
         target = sum(nums) // 2
         dp = [0] * (target + 1)
         for num in nums:
-            for j in range(target, num-1, -1):
+            for j in range(target, num-1, -1): #这是什么意思？
                 dp[j] = max(dp[j], dp[j-num] + num)
+        print(dp)
         return dp[-1] == target
 # @lc code=end
 
