@@ -6,15 +6,7 @@
 
 # @lc code=start
 class Solution:
-    def deleteGreatestValue(self, grid: List[List[int]]) -> int:
-        for i in range(len(grid)):
-            grid[i].sort()
-        res = 0
-        for x in range(len(grid[0])):
-            loopValue = grid[0][x]
-            for y in range(1, len(grid)):
-                loopValue = max(loopValue, grid[y][x])
-            res += loopValue
-        return res
+    def deleteGreatestValue(self, G: List[List[int]]) -> int:
+        return sum(map(max, zip(*map(sorted, G))))
 # @lc code=end
 
