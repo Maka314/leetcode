@@ -8,27 +8,22 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         s = sum(nums)
-        n = len(nums)
         if s % 2:
             return False
+        target = s//2
         
         #需要构建一个相当于一半容量的背包
-        bag = [[0 for _ in range(s//2 + 1)] for _ in range(n)]
+        bag = [False for _ in range(target + 1)]
+        bag[0] = True
 
-        #初始化第一行
-        item = 0
-        for compasity in range(s//2 + 1):
-            if compasity >= nums[item]:
-                bag[item][compasity] = nums[item]
-        
-        for item in range(1, len(nums)):
-            for compasity in range(s//2 + 1):
-                if compasity - nums[item] < 0:
-                    #不能塞下这个和其他物品
-                    bag[item][compasity] = bag[item - 1][compasity]
-                else:
-                    bag[item][compasity] = max(bag[item - 1][compasity], bag[item - 1][compasity - nums[item]] + nums[item], 0)
+        #逐个检查背包
+        for item in range(len(nums)):
+            for capacity in range(target, 0, -1):
+                if capacity >= nums[item]:
+                    bag[capacity] = bag[capacity] or bag[capacity - nums[item]]                    
 
-        return s//2 == bag[len(nums)-1][s//2]
+            if bag[-1]:
+                return True
+        return False
 # @lc code=end
 
