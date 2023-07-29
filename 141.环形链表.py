@@ -13,8 +13,8 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        fastHandle = head
-        slowHandle = head
+        fastHandle, slowHandle = head, head
+
         while slowHandle:
             if not fastHandle.next or not fastHandle.next.next:
                 return False
@@ -22,6 +22,7 @@ class Solution:
             slowHandle = slowHandle.next
             if fastHandle == slowHandle:
                 return True
+            
         return False
 # @lc code=end
 
