@@ -14,12 +14,14 @@ class Solution:
             return 0
         
         targetSum = (s + target) // 2
+        if targetSum < 0:
+            return 0
         slutionDP = [0 for _ in range(targetSum + 1)]
 
         slutionDP[0] = 1 #特殊情况，0也是一种方式
 
         for item in range(len(nums)):
-            for finalRes in range(targetSum, 0,-1):
+            for finalRes in range(targetSum, -1, -1):
                 if finalRes >= nums[item]: #可以从历史方案达成
                     slutionDP[finalRes] += slutionDP[finalRes - nums[item]]
             
