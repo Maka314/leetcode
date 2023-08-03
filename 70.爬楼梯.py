@@ -6,15 +6,13 @@
 
 # @lc code=start
 class Solution:
-    def __init__(self) -> None:
-        self.slution = {1:1,
-                        2:2}
-
     def climbStairs(self, n: int) -> int:
-        if n in self.slution:
-            return self.slution[n]
-        res = self.climbStairs(n-1) + self.climbStairs(n-2)
-        self.slution[n] = res
-        return res
+        plan = [0 for _ in range(n+1)]
+        plan[0] = 1
+        for stares in range(n-1):
+            plan[stares+2] += plan[stares]
+            plan[stares+1] += plan[stares]
+        
+        return plan[-1]+plan[-2]
 # @lc code=end
 
