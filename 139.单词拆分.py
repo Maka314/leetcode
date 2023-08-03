@@ -4,20 +4,19 @@
 # [139] 单词拆分
 #
 
+
 # @lc code=start
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        res = self.backTracking(s,0,wordDict)
-        return res
+        bag = [False for _ in range(len(s) + 1)]
+        bag[0] = True
+        for position in range(1, len(s) + 1):
+            for item in wordDict:
+                if len(item) <= position and s[position - len(item) : position] == item:
+                    if bag[position - len(item)]:
+                        bag[position] = True
+                        break
+        return bag[-1]
 
-    def backTracking(self,s,position,wordDict):
-        if position == len(s):
-            return True
 
-        for word in wordDict:
-            if s[position:position+len(word)] == word:
-                if self.backTracking(s,position+len(word),wordDict):
-                    return True
-        return False
 # @lc code=end
-
