@@ -16,6 +16,7 @@ class Solution:
         
         lastRes = self.construct(n-1)
         res = lastRes + [i+2**(n-1) for i in lastRes[::-1]]
+        #运用反射编码性质
         self.res[n] = res
         return res
 # @lc code=end
