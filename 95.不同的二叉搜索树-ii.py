@@ -26,8 +26,7 @@ class Solution:
                 rightTreeList = treeList(rootValue, right)
                 for leftTree in leftTreeList:
                     for rightTree in rightTreeList:
-                        thisNode = TreeNode(rootValue, leftTree, rightTree)
-                        res.append(thisNode)
+                        res.append(TreeNode(rootValue, leftTree, rightTree))
             return res
 
         return treeList(0, n + 1)
