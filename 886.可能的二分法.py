@@ -7,22 +7,12 @@
 # @lc code=start
 class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        def find(x):
-            if p[x] != x:
-                p[x] = find(p[x])
-            return p[x]
-
-        g = defaultdict(list)
-        for a, b in dislikes:
-            a, b = a - 1, b - 1
-            g[a].append(b)
-            g[b].append(a)
-        p = list(range(n))
-        for i in range(n):
-            for j in g[i]:
-                if find(i) == find(j):
-                    return False
-                p[find(j)] = find(g[i][0])
-        return True                
+        dislikes.sort()
+        graph = [-1 for i in range(n)]
+        hateList = [{} for i in range(1, n+1)]
+        for dis in dislikes:
+            hateList[dis[0] - 1].add(dis[1])
+            hateList[dis[1] - 1].add(dis[1])
+        
 # @lc code=end
 
