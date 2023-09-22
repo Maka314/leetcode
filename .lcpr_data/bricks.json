@@ -1,1 +1,11 @@
-{"version":1}
+{
+    "version": 1,
+    "all_bricks": {
+        "2663": {
+            "submit_time": [
+                1695365274
+            ],
+            "type": 2
+        }
+    }
+}
